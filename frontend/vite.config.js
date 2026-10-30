@@ -13,4 +13,9 @@ export default defineConfig({
     host: true,
     port: 5173,
   },
+  build: {
+    outDir: 'dist',
+    // Increase chunk size warning limit for large data files
+    chunkSizeWarningLimit: 1000,
+  },
 })

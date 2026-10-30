@@ -33,13 +33,19 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Enable CORS for React frontend (Vite default ports: 5173, 5174 on localhost and 127.0.0.1)
+# Enable CORS for React frontend
+import os
+FRONTEND_URL = os.getenv("FRONTEND_URL", "")
 allowed_origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:5174",
     "http://127.0.0.1:5174",
+    # Render deployed frontend
+    "https://garbhasaathi-frontend.onrender.com",
 ]
+if FRONTEND_URL and FRONTEND_URL not in allowed_origins:
+    allowed_origins.append(FRONTEND_URL)
 
 app.add_middleware(
     CORSMiddleware,
@@ -48,6 +54,11 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
+
+# --- Health Check Endpoint (for Render) ---
+@app.get("/health")
+def health_check():
+    return {"status": "ok", "service": "GarbhaSaathi API"}
 
 # --- Startup Event: Safe Table Creation & Initial Seed ---
 @app.on_event("startup")
