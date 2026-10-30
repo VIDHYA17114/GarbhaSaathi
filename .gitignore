@@ -1,0 +1,38 @@
+# Backup files
+*.bak
+*.old
+
+# Dependencies
+node_modules/
+backend/.venv/
+.venv/
+venv/
+
+# Production Build
+frontend/dist/
+dist/
+dist-ssr/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+backend/__pycache__/
+
+# Environment & Sensitive Files
+.env
+.env.local
+backend/.env
+frontend/.env
+*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

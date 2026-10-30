@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --primary: #157F66;
+    --primary-dark: #0e5947;
+    --primary-light: #e8f5f1;
+    --primary-hover: #199478;
+    --coral: #FF7B72;
+    --coral-light: #FFF0EE;
+    --peach: #FFF6EE;
+    --bg-cream: #FBF9F5;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans Devanagari', sans-serif;
+    background-color: #FAF9F5;
+    color: #2D3748;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  html.dark body {
+    background-color: #0b1320;
+    color: #f1f5f9;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+}
+
+/* Custom animations */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Hide scrollbars for clean mobile feel while allowing scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
